@@ -1,50 +1,36 @@
 /*
-# Create orders table (single-tenant, no auth)
+# Create orders table with per-user ownership
 
 ## Purpose
-Stores completed Cash-on-Delivery orders placed through the Aurelia storefront
-checkout. Each row represents one order with its items, customer details,
-totals, and a status that progresses through the fulfilment lifecycle.
+Stores completed Cash-on-Delivery orders placed through the Aurelia storefront.
+Each order belongs to a single authenticated user so one shopper cannot access
+another shopper's order history.
 
 ## New Tables
 - `orders`
-  - `id` (text, primary key) — human-readable order ID like `AUR12345678`,
-    generated client-side at checkout.
-  - `items` (jsonb, not null) — array of cart line items snapshot
-    (product id, name, price, quantity, color, size, image).
-  - `customer` (jsonb, not null) — customer form snapshot
-    (full name, phone, email, address, city, state, pincode).
-  - `subtotal` (integer, not null) — order subtotal in paise-free rupees.
+  - `id` (text, primary key) — unique order reference like `AUR12345678`.
+  - `user_id` (uuid, not null) — Supabase auth user ID that owns the order.
+  - `items` (jsonb, not null) — cart snapshot.
+  - `customer` (jsonb, not null) — shipping details.
+  - `subtotal` (integer, not null) — order subtotal in rupees.
   - `shipping` (integer, not null, default 0) — shipping charge in rupees.
-  - `total` (integer, not null) — grand total in rupees (COD amount).
-  - `status` (text, not null, default 'placed') — fulfilment status.
-    One of: placed, confirmed, dispatched, out_for_delivery, delivered, cancelled.
-  - `status_history` (jsonb, not null, default '[]') — array of
-    { status, at } entries tracking each status transition timestamp.
-  - `created_at` (timestamptz, default now()) — when the order was placed.
+  - `total` (integer, not null) — COD total in rupees.
+  - `status` (text, not null, default 'placed') — fulfilment state.
+  - `status_history` (jsonb, not null, default '[]') — status timeline.
+  - `created_at` (timestamptz, default now()) — order creation timestamp.
 
 ## Security
-- Row Level Security ENABLED on `orders`.
-- This is a single-tenant storefront with no sign-in screen, so the anon-key
-  client must be able to read, insert, and update orders. Four separate policies
-  (select / insert / update / delete) are granted to `anon, authenticated` with
-  `USING (true)` / `WITH CHECK (true)` because the data is intentionally shared
-  across the storefront (no per-user ownership isolation exists).
-- DELETE is also granted to anon so stale demo orders can be cleared; in a
-  production multi-user app this would be scoped to authenticated owners only.
-
-## Notes
-1. `status_history` is maintained client-side: on insert it seeds the first
-   `placed` entry; subsequent status updates append a new entry. A trigger is
-   intentionally avoided to keep the demo self-contained in the frontend.
-2. Amounts are stored as plain integers (rupees) — no decimal precision needed
-   since COD cash payments are whole rupees.
-3. Idempotent: uses `IF NOT EXISTS` for the table and drops policies before
-   recreating them so re-running the migration is safe.
+- The password and login credentials are stored securely in Supabase Auth
+  (`auth.users`), not in the public `orders` table.
+- `orders.user_id` is linked to `auth.users.id` so each row is private to that
+  user.
+- Row Level Security is enabled and every policy restricts access to the
+  authenticated user currently logged in.
 */
 
 CREATE TABLE IF NOT EXISTS orders (
   id text PRIMARY KEY,
+  user_id uuid,
   items jsonb NOT NULL,
   customer jsonb NOT NULL,
   subtotal integer NOT NULL,
@@ -55,26 +41,45 @@ CREATE TABLE IF NOT EXISTS orders (
   created_at timestamptz NOT NULL DEFAULT now()
 );
 
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS user_id uuid;
+
+-- Existing storefront data may not have a linked user yet. Remove those legacy rows
+-- before enforcing the authenticated-owner rule so the table matches the private
+-- order model.
+DELETE FROM orders WHERE user_id IS NULL;
+
+ALTER TABLE orders
+  ALTER COLUMN user_id SET NOT NULL;
+
+ALTER TABLE orders
+  ADD CONSTRAINT IF NOT EXISTS orders_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 
-DROP POLICY IF EXISTS "anon_select_orders" ON orders;
-CREATE POLICY "anon_select_orders"
+DROP POLICY IF EXISTS "users_select_own_orders" ON orders;
+CREATE POLICY "users_select_own_orders"
 ON orders FOR SELECT
-TO anon, authenticated USING (true);
+TO authenticated
+USING (auth.uid() = user_id);
 
-DROP POLICY IF EXISTS "anon_insert_orders" ON orders;
-CREATE POLICY "anon_insert_orders"
+DROP POLICY IF EXISTS "users_insert_own_orders" ON orders;
+CREATE POLICY "users_insert_own_orders"
 ON orders FOR INSERT
-TO anon, authenticated WITH CHECK (true);
+TO authenticated
+WITH CHECK (auth.uid() = user_id);
 
-DROP POLICY IF EXISTS "anon_update_orders" ON orders;
-CREATE POLICY "anon_update_orders"
+DROP POLICY IF EXISTS "users_update_own_orders" ON orders;
+CREATE POLICY "users_update_own_orders"
 ON orders FOR UPDATE
-TO anon, authenticated USING (true) WITH CHECK (true);
+TO authenticated
+USING (auth.uid() = user_id)
+WITH CHECK (auth.uid() = user_id);
 
-DROP POLICY IF EXISTS "anon_delete_orders" ON orders;
-CREATE POLICY "anon_delete_orders"
+DROP POLICY IF EXISTS "users_delete_own_orders" ON orders;
+CREATE POLICY "users_delete_own_orders"
 ON orders FOR DELETE
-TO anon, authenticated USING (true);
+TO authenticated
+USING (auth.uid() = user_id);
 
-CREATE INDEX IF NOT EXISTS orders_created_at_idx ON orders (created_at DESC);
+CREATE INDEX IF NOT EXISTS orders_user_created_at_idx ON orders (user_id, created_at DESC);

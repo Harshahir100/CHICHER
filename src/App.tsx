@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import CheckoutCOD from '@/components/CheckoutCOD';
+import AuthModal from '@/components/AuthModal';
+import { supabase } from '@/lib/supabase';
 import Home from '@/pages/Home';
 import CategoryPage from '@/pages/CategoryPage';
 import ProductDetail from '@/pages/ProductDetail';
@@ -41,8 +43,32 @@ function NotFound() {
 
 function App() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
-  const openCheckout = () => setCheckoutOpen(true);
+  useEffect(() => {
+    let active = true;
+
+    const { data: authState } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!active) return;
+      if (session?.user) {
+        setAuthModalOpen(false);
+      }
+    });
+
+    return () => {
+      active = false;
+      authState.subscription.unsubscribe();
+    };
+  }, []);
+
+  const openCheckout = () => {
+    setCheckoutOpen(true);
+  };
+
+  const handleAuthSuccess = () => {
+    setAuthModalOpen(false);
+    setCheckoutOpen(true);
+  };
 
   return (
     <BrowserRouter>
@@ -75,7 +101,16 @@ function App() {
           <Footer />
         </div>
         <CartDrawer onCheckout={openCheckout} />
-        <CheckoutCOD open={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
+        <CheckoutCOD
+          open={checkoutOpen}
+          onClose={() => setCheckoutOpen(false)}
+          onRequireAuth={() => setAuthModalOpen(true)}
+        />
+        <AuthModal
+          open={authModalOpen}
+          onClose={() => setAuthModalOpen(false)}
+          onSuccess={handleAuthSuccess}
+        />
       </CartProvider>
     </BrowserRouter>
   );

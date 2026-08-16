@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Search, Heart, ShoppingBag, Menu, X, User, ClipboardList } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, X, User, ClipboardList, LogOut, ChevronDown } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { supabase } from '@/lib/supabase';
 import products from '@/data/products';
 
 const navLinks = [
@@ -18,9 +19,29 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const searchRef = useRef(null);
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    const syncUser = async () => {
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      setUser(currentUser);
+    };
+
+    syncUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -34,6 +55,17 @@ export default function Navbar() {
     else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const results = query.trim()
     ? products
@@ -54,6 +86,14 @@ export default function Navbar() {
       setQuery('');
     }
   };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setProfileOpen(false);
+    navigate('/');
+  };
+
+  const displayName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Guest';
 
   return (
     <>
@@ -153,6 +193,59 @@ export default function Navbar() {
                 </span>
               )}
             </button>
+
+            <div ref={profileRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setProfileOpen((value) => !value)}
+                aria-label="Open profile menu"
+                className="flex items-center gap-2 rounded-full border border-ink-200 bg-white px-2 py-1.5 text-sm font-medium text-ink-700 transition-colors hover:border-brand-200 hover:text-brand-700"
+              >
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-brand-50 text-brand-700">
+                  <User className="h-4 w-4" />
+                </span>
+                <span className="hidden md:block">{displayName}</span>
+                <ChevronDown className="hidden h-4 w-4 md:block" />
+              </button>
+
+              {profileOpen && (
+                <div className="absolute right-0 top-[calc(100%+0.75rem)] w-72 rounded-2xl border border-ink-100 bg-white p-3 shadow-card">
+                  <div className="flex items-center gap-3 border-b border-ink-100 pb-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-50 text-brand-700">
+                      <User className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-ink-900">{displayName}</p>
+                      <p className="truncate text-xs text-ink-500">{user?.email || 'Not signed in'}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 py-3 text-sm text-ink-600">
+                    <div className="rounded-xl bg-ink-50 p-2">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">User ID</p>
+                      <p className="mt-1 break-all text-xs text-ink-700">{user?.id || '—'}</p>
+                    </div>
+                    <div className="rounded-xl bg-ink-50 p-2">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Email</p>
+                      <p className="mt-1 break-all text-xs text-ink-700">{user?.email || '—'}</p>
+                    </div>
+                    <div className="rounded-xl bg-ink-50 p-2">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Name</p>
+                      <p className="mt-1 text-xs text-ink-700">{user?.user_metadata?.full_name || 'Not provided'}</p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-error-500/10 px-3 py-2 text-sm font-medium text-error-600 transition-colors hover:bg-error-500/15"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </nav>
 

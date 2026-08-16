@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X, CheckCircle2, Truck, Phone, ShieldCheck, Banknote, AlertCircle } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { supabase } from '@/lib/supabase';
 import { createOrder } from '@/lib/ordersApi';
 
 const indianStates = [
@@ -17,7 +18,7 @@ const emptyForm = {
   address: '', city: '', state: '', pincode: '',
 };
 
-export default function CheckoutCOD({ open, onClose }) {
+export default function CheckoutCOD({ open, onClose, onRequireAuth }) {
   const { cart, subtotal, shipping, total, clearCart } = useCart();
   const [form, setForm] = useState(emptyForm);
   const [errors, setErrors] = useState({});
@@ -48,6 +49,14 @@ export default function CheckoutCOD({ open, onClose }) {
   const placeOrder = async (e) => {
     e.preventDefault();
     if (!validate()) return;
+
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+    if (userError || !userData.user) {
+      setSubmitError('Please login to place your order.');
+      onRequireAuth?.();
+      return;
+    }
+
     setSubmitting(true);
     setSubmitError(null);
     const orderId = `AUR${Date.now().toString().slice(-8)}`;
