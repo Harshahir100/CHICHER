@@ -1,15 +1,26 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Truck, ShieldCheck, Banknote, RefreshCw } from 'lucide-react';
-import products, { getNewArrivals, categories } from '@/data/products';
-import ProductCard from '@/components/ProductCard';
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Sparkles,
+  Truck,
+  ShieldCheck,
+  Banknote,
+  RefreshCw,
+} from "lucide-react";
+import products, { getNewArrivals, categories } from "@/data/products";
+import ProductCard from "@/components/ProductCard";
 
-const heroImage = 'https://images.pexels.com/photos/38526708/pexels-photo-38526708.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400';
-const heroImage2 = 'https://images.pexels.com/photos/35059564/pexels-photo-35059564.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400';
+const heroImage =
+  "https://images.pexels.com/photos/38526708/pexels-photo-38526708.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400";
+const heroImage2 =
+  "https://images.pexels.com/photos/35059564/pexels-photo-35059564.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400";
 
 export default function Home() {
   const newArrivals = getNewArrivals(8);
-  const ethnic = products.filter((p) => p.subcategory === 'Ethnic').slice(0, 4);
-  const jewellery = products.filter((p) => p.category === 'jewellery').slice(0, 4);
+  const ethnic = products.filter((p) => p.subcategory === "Ethnic").slice(0, 4);
+  const jewellery = products
+    .filter((p) => p.category === "jewellery")
+    .slice(0, 4);
 
   return (
     <div>
@@ -31,21 +42,28 @@ export default function Home() {
                 Timeless elegance, crafted for her
               </h1>
               <p className="mt-4 text-base text-ink-200 lg:text-lg">
-                Discover handcrafted ethnic & western wear and jewellery that celebrates
-                every facet of you. Cash on Delivery across India.
+                Discover handcrafted ethnic & western wear and jewellery that
+                celebrates every facet of you. Cash on Delivery across India.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link to="/category/women-wear" className="btn-primary">
                   Shop Women Wear <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/category/jewellery" className="btn-outline border-brand-400/40 bg-transparent text-white hover:bg-white/10 hover:text-white">
+                <Link
+                  to="/category/jewellery"
+                  className="btn-outline border-brand-400/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                >
                   Explore Jewellery
                 </Link>
               </div>
             </div>
           </div>
           <div className="relative hidden lg:block">
-            <img src={heroImage} alt="Ethnic wear" className="h-full w-full object-cover" />
+            <img
+              src={heroImage}
+              alt="Ethnic wear"
+              className="h-full w-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-transparent to-transparent" />
           </div>
         </div>
@@ -55,10 +73,26 @@ export default function Home() {
       <section className="border-b border-ink-100 bg-white">
         <div className="container-app grid grid-cols-2 gap-4 py-6 sm:grid-cols-4">
           {[
-            { icon: Banknote, title: 'Cash on Delivery', desc: 'Pay at your doorstep' },
-            { icon: Truck, title: 'Free Shipping', desc: 'On orders over ₹1,499' },
-            { icon: RefreshCw, title: 'Easy Returns', desc: '7-day return window' },
-            { icon: ShieldCheck, title: 'Quality Assured', desc: 'Handcrafted with care' },
+            {
+              icon: Banknote,
+              title: "Cash on Delivery",
+              desc: "Pay at your doorstep",
+            },
+            {
+              icon: Truck,
+              title: "Free Shipping",
+              desc: "On orders over ₹1,499",
+            },
+            {
+              icon: RefreshCw,
+              title: "Easy Returns",
+              desc: "7-day return window",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Quality Assured",
+              desc: "Handcrafted with care",
+            },
           ].map((f) => (
             <div key={f.title} className="flex items-center gap-3">
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-600">
@@ -76,8 +110,12 @@ export default function Home() {
       {/* Category showcase */}
       <section className="container-app py-14">
         <div className="mb-8 text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-600">Shop by category</p>
-          <h2 className="mt-1 font-display text-3xl font-bold text-ink-900 sm:text-4xl">Curated collections</h2>
+          <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+            Shop by category
+          </p>
+          <h2 className="mt-1 font-display text-3xl font-bold text-ink-900 sm:text-4xl">
+            Curated collections
+          </h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           <CategoryCard
@@ -100,15 +138,24 @@ export default function Home() {
         <div className="container-app">
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-brand-600">Just landed</p>
-              <h2 className="mt-1 font-display text-3xl font-bold text-ink-900">New Arrivals</h2>
+              <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+                Just landed
+              </p>
+              <h2 className="mt-1 font-display text-3xl font-bold text-ink-900">
+                New Arrivals
+              </h2>
             </div>
-            <Link to="/new-arrivals" className="hidden text-sm font-semibold text-brand-700 hover:underline sm:flex sm:items-center sm:gap-1">
+            <Link
+              to="/new-arrivals"
+              className="hidden text-sm font-semibold text-brand-700 hover:underline sm:flex sm:items-center sm:gap-1"
+            >
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {newArrivals.map((p) => <ProductCard key={p.id} product={p} />)}
+            {newArrivals.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
           </div>
         </div>
       </section>
@@ -117,15 +164,24 @@ export default function Home() {
       <section className="container-app py-14">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-brand-600">Heritage edit</p>
-            <h2 className="mt-1 font-display text-3xl font-bold text-ink-900">Ethnic Wear</h2>
+            <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+              Heritage edit
+            </p>
+            <h2 className="mt-1 font-display text-3xl font-bold text-ink-900">
+              Ethnic Wear
+            </h2>
           </div>
-          <Link to="/category/women-wear?sub=Ethnic" className="hidden text-sm font-semibold text-brand-700 hover:underline sm:flex sm:items-center sm:gap-1">
+          <Link
+            to="/category/women-wear?sub=Ethnic"
+            className="hidden text-sm font-semibold text-brand-700 hover:underline sm:flex sm:items-center sm:gap-1"
+          >
             View all <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {ethnic.map((p) => <ProductCard key={p.id} product={p} />)}
+          {ethnic.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
         </div>
       </section>
 
@@ -134,15 +190,24 @@ export default function Home() {
         <div className="container-app">
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-brand-400">Adorn yourself</p>
-              <h2 className="mt-1 font-display text-3xl font-bold">Jewellery Highlights</h2>
+              <p className="text-sm font-medium uppercase tracking-widest text-brand-400">
+                Adorn yourself
+              </p>
+              <h2 className="mt-1 font-display text-3xl font-bold">
+                Jewellery Highlights
+              </h2>
             </div>
-            <Link to="/category/jewellery" className="hidden text-sm font-semibold text-brand-400 hover:underline sm:flex sm:items-center sm:gap-1">
+            <Link
+              to="/category/jewellery"
+              className="hidden text-sm font-semibold text-brand-400 hover:underline sm:flex sm:items-center sm:gap-1"
+            >
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {jewellery.map((p) => <ProductCard key={p.id} product={p} />)}
+            {jewellery.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
           </div>
         </div>
       </section>
@@ -151,11 +216,17 @@ export default function Home() {
       <section className="container-app py-16">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 to-brand-900 px-8 py-14 text-center text-white">
           <Sparkles className="mx-auto mb-3 h-8 w-8 text-brand-200" />
-          <h2 className="font-display text-3xl font-bold sm:text-4xl">Become an Aurelia insider</h2>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">
+            Become an chicher insider
+          </h2>
           <p className="mx-auto mt-3 max-w-md text-brand-100">
-            Sign up for our newsletter and be the first to shop new collections and exclusive offers.
+            Sign up for our newsletter and be the first to shop new collections
+            and exclusive offers.
           </p>
-          <Link to="/contact" className="btn-outline mt-6 border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white">
+          <Link
+            to="/contact"
+            className="btn-outline mt-6 border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+          >
             Get in touch
           </Link>
         </div>
@@ -178,9 +249,12 @@ function CategoryCard({ to, title, subtitle, image }) {
       <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/20 to-transparent" />
       <div className="absolute bottom-0 left-0 p-7">
         <p className="text-sm text-brand-200">{subtitle}</p>
-        <h3 className="mt-1 font-display text-3xl font-bold text-white">{title}</h3>
+        <h3 className="mt-1 font-display text-3xl font-bold text-white">
+          {title}
+        </h3>
         <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white">
-          Shop now <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          Shop now{" "}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </span>
       </div>
     </Link>

@@ -1,13 +1,26 @@
-export default function PolicyLayout({ title, subtitle, lastUpdated, children }) {
+export default function PolicyLayout({
+  title,
+  subtitle,
+  lastUpdated,
+  children,
+}) {
   return (
     <div>
       <div className="border-b border-ink-100 bg-ink-100/50">
         <div className="container-app py-10">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-600">Aurelia</p>
-          <h1 className="mt-1 font-display text-4xl font-bold text-ink-900">{title}</h1>
-          {subtitle && <p className="mt-2 max-w-2xl text-ink-600">{subtitle}</p>}
+          <p className="text-sm font-medium uppercase tracking-widest text-brand-600">
+            chicher
+          </p>
+          <h1 className="mt-1 font-display text-4xl font-bold text-ink-900">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="mt-2 max-w-2xl text-ink-600">{subtitle}</p>
+          )}
           {lastUpdated && (
-            <p className="mt-3 text-xs text-ink-400">Last updated: {lastUpdated}</p>
+            <p className="mt-3 text-xs text-ink-400">
+              Last updated: {lastUpdated}
+            </p>
           )}
         </div>
       </div>

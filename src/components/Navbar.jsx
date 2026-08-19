@@ -1,17 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Search, Heart, ShoppingBag, Menu, X, User, ClipboardList, LogOut, ChevronDown } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
-import { supabase } from '@/lib/supabase';
-import products from '@/data/products';
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import {
+  Search,
+  Heart,
+  ShoppingBag,
+  Menu,
+  X,
+  User,
+  ClipboardList,
+  LogOut,
+  ChevronDown,
+} from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import { supabase } from "@/lib/supabase";
+import products from "@/data/products";
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/category/women-wear', label: 'Women Wear' },
-  { to: '/category/jewellery', label: 'Jewellery' },
-  { to: '/new-arrivals', label: 'New Arrivals' },
-  { to: '/about', label: 'About Us' },
-  { to: '/contact', label: 'Contact Us' },
+  { to: "/", label: "Home" },
+  { to: "/category/women-wear", label: "Women Wear" },
+  { to: "/category/jewellery", label: "Jewellery" },
+  { to: "/new-arrivals", label: "New Arrivals" },
+  { to: "/about", label: "About Us" },
+  { to: "/contact", label: "Contact Us" },
 ];
 
 export default function Navbar() {
@@ -20,7 +30,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const searchRef = useRef(null);
@@ -28,15 +38,19 @@ export default function Navbar() {
 
   useEffect(() => {
     const syncUser = async () => {
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
       setUser(currentUser);
     };
 
     syncUser();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      },
+    );
 
     return () => {
       authListener.subscription.unsubscribe();
@@ -46,14 +60,16 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
+    if (mobileOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -63,16 +79,17 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const results = query.trim()
     ? products
-        .filter((p) =>
-          p.name.toLowerCase().includes(query.toLowerCase()) ||
-          p.subcategory.toLowerCase().includes(query.toLowerCase()) ||
-          p.category.toLowerCase().includes(query.toLowerCase()),
+        .filter(
+          (p) =>
+            p.name.toLowerCase().includes(query.toLowerCase()) ||
+            p.subcategory.toLowerCase().includes(query.toLowerCase()) ||
+            p.category.toLowerCase().includes(query.toLowerCase()),
         )
         .slice(0, 6)
     : [];
@@ -83,30 +100,32 @@ export default function Navbar() {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
       setSearchOpen(false);
       setMobileOpen(false);
-      setQuery('');
+      setQuery("");
     }
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setProfileOpen(false);
-    navigate('/');
+    navigate("/");
   };
 
-  const displayName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Guest';
+  const displayName =
+    user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Guest";
 
   return (
     <>
       {/* Announcement bar */}
       <div className="bg-ink-900 text-center text-xs font-medium text-ink-100">
         <p className="px-4 py-2">
-          Free shipping on orders over ₹1,499 · Cash on Delivery available across India
+          Free shipping on orders over ₹1,499 · Cash on Delivery available
+          across India
         </p>
       </div>
 
       <header
         className={`sticky top-0 z-40 transition-all duration-300 ${
-          scrolled ? 'bg-white/95 shadow-soft backdrop-blur' : 'bg-white'
+          scrolled ? "bg-white/95 shadow-soft backdrop-blur" : "bg-white"
         }`}
       >
         <nav className="container-app flex h-16 items-center justify-between gap-4">
@@ -123,10 +142,10 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-600 font-display text-lg font-bold text-white">
-              A
+              C
             </span>
             <span className="font-display text-2xl font-bold tracking-tight text-ink-900">
-              Aurelia
+              HICHER
             </span>
           </Link>
 
@@ -136,12 +155,12 @@ export default function Navbar() {
               <li key={link.to}>
                 <NavLink
                   to={link.to}
-                  end={link.to === '/'}
+                  end={link.to === "/"}
                   className={({ isActive }) =>
                     `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                       isActive
-                        ? 'bg-brand-50 text-brand-700'
-                        : 'text-ink-700 hover:bg-ink-100 hover:text-brand-600'
+                        ? "bg-brand-50 text-brand-700"
+                        : "text-ink-700 hover:bg-ink-100 hover:text-brand-600"
                     }`
                   }
                 >
@@ -215,23 +234,39 @@ export default function Navbar() {
                       <User className="h-5 w-5" />
                     </span>
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-ink-900">{displayName}</p>
-                      <p className="truncate text-xs text-ink-500">{user?.email || 'Not signed in'}</p>
+                      <p className="truncate text-sm font-semibold text-ink-900">
+                        {displayName}
+                      </p>
+                      <p className="truncate text-xs text-ink-500">
+                        {user?.email || "Not signed in"}
+                      </p>
                     </div>
                   </div>
 
                   <div className="space-y-2 py-3 text-sm text-ink-600">
                     <div className="rounded-xl bg-ink-50 p-2">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">User ID</p>
-                      <p className="mt-1 break-all text-xs text-ink-700">{user?.id || '—'}</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
+                        User ID
+                      </p>
+                      <p className="mt-1 break-all text-xs text-ink-700">
+                        {user?.id || "—"}
+                      </p>
                     </div>
                     <div className="rounded-xl bg-ink-50 p-2">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Email</p>
-                      <p className="mt-1 break-all text-xs text-ink-700">{user?.email || '—'}</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
+                        Email
+                      </p>
+                      <p className="mt-1 break-all text-xs text-ink-700">
+                        {user?.email || "—"}
+                      </p>
                     </div>
                     <div className="rounded-xl bg-ink-50 p-2">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Name</p>
-                      <p className="mt-1 text-xs text-ink-700">{user?.user_metadata?.full_name || 'Not provided'}</p>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
+                        Name
+                      </p>
+                      <p className="mt-1 text-xs text-ink-700">
+                        {user?.user_metadata?.full_name || "Not provided"}
+                      </p>
                     </div>
                   </div>
 
@@ -270,13 +305,24 @@ export default function Navbar() {
                     <Link
                       key={p.id}
                       to={`/product/${p.id}`}
-                      onClick={() => { setSearchOpen(false); setQuery(''); }}
+                      onClick={() => {
+                        setSearchOpen(false);
+                        setQuery("");
+                      }}
                       className="flex items-center gap-3 rounded-xl border border-ink-100 p-2 transition-colors hover:bg-ink-50"
                     >
-                      <img src={p.images[0]} alt={p.name} className="h-14 w-14 rounded-lg object-cover" />
+                      <img
+                        src={p.images[0]}
+                        alt={p.name}
+                        className="h-14 w-14 rounded-lg object-cover"
+                      />
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-ink-900">{p.name}</p>
-                        <p className="text-xs text-ink-500">{p.subcategory} · ₹{p.price.toLocaleString('en-IN')}</p>
+                        <p className="truncate text-sm font-medium text-ink-900">
+                          {p.name}
+                        </p>
+                        <p className="text-xs text-ink-500">
+                          {p.subcategory} · ₹{p.price.toLocaleString("en-IN")}
+                        </p>
                       </div>
                     </Link>
                   ))}
@@ -289,23 +335,28 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 z-50 lg:hidden ${mobileOpen ? '' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-50 lg:hidden ${mobileOpen ? "" : "pointer-events-none"}`}
         aria-hidden={!mobileOpen}
       >
         <div
           className={`absolute inset-0 bg-ink-950/50 transition-opacity duration-300 ${
-            mobileOpen ? 'opacity-100' : 'opacity-0'
+            mobileOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setMobileOpen(false)}
         />
         <aside
           className={`absolute left-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-card transition-transform duration-300 ${
-            mobileOpen ? 'translate-x-0' : '-translate-x-full'
+            mobileOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           <div className="flex items-center justify-between border-b border-ink-100 px-5 py-4">
-            <span className="font-display text-xl font-bold text-ink-900">Menu</span>
-            <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
+            <span className="font-display text-xl font-bold text-ink-900">
+              Menu
+            </span>
+            <button
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close menu"
+            >
               <X className="h-6 w-6 text-ink-700" />
             </button>
           </div>
@@ -314,11 +365,13 @@ export default function Navbar() {
               <li key={link.to}>
                 <NavLink
                   to={link.to}
-                  end={link.to === '/'}
+                  end={link.to === "/"}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
                     `block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
-                      isActive ? 'bg-brand-50 text-brand-700' : 'text-ink-700 hover:bg-ink-100'
+                      isActive
+                        ? "bg-brand-50 text-brand-700"
+                        : "text-ink-700 hover:bg-ink-100"
                     }`
                   }
                 >

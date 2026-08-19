@@ -2,7 +2,7 @@
 # Create orders table with per-user ownership
 
 ## Purpose
-Stores completed Cash-on-Delivery orders placed through the Aurelia storefront.
+Stores completed Cash-on-Delivery orders placed through the chicher storefront.
 Each order belongs to a single authenticated user so one shopper cannot access
 another shopper's order history.
 

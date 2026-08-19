@@ -1,9 +1,16 @@
-import { createContext, useContext, useEffect, useMemo, useReducer, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 
 const CartContext = createContext(null);
 
-const STORAGE_KEY = 'aurelia-cart-v1';
-const WISHLIST_KEY = 'aurelia-wishlist-v1';
+const STORAGE_KEY = "chicher-cart-v1";
+const WISHLIST_KEY = "chicher-wishlist-v1";
 
 function loadCart() {
   try {
@@ -25,9 +32,9 @@ function loadWishlist() {
 
 function cartReducer(state, action) {
   switch (action.type) {
-    case 'ADD': {
+    case "ADD": {
       const { product, quantity, color, size } = action.item;
-      const key = `${product.id}-${color?.name || ''}-${size || ''}`;
+      const key = `${product.id}-${color?.name || ""}-${size || ""}`;
       const existing = state.find((i) => i.key === key);
       if (existing) {
         return state.map((i) =>
@@ -36,14 +43,14 @@ function cartReducer(state, action) {
       }
       return [...state, { key, product, quantity, color, size }];
     }
-    case 'UPDATE_QTY': {
+    case "UPDATE_QTY": {
       const { key, quantity } = action;
       if (quantity <= 0) return state.filter((i) => i.key !== key);
       return state.map((i) => (i.key === key ? { ...i, quantity } : i));
     }
-    case 'REMOVE':
+    case "REMOVE":
       return state.filter((i) => i.key !== action.key);
-    case 'CLEAR':
+    case "CLEAR":
       return [];
     default:
       return state;
@@ -64,16 +71,16 @@ export function CartProvider({ children }) {
   }, [wishlist]);
 
   const addToCart = (item) => {
-    dispatch({ type: 'ADD', item });
+    dispatch({ type: "ADD", item });
     setIsCartOpen(true);
   };
 
   const updateQuantity = (key, quantity) =>
-    dispatch({ type: 'UPDATE_QTY', key, quantity });
+    dispatch({ type: "UPDATE_QTY", key, quantity });
 
-  const removeFromCart = (key) => dispatch({ type: 'REMOVE', key });
+  const removeFromCart = (key) => dispatch({ type: "REMOVE", key });
 
-  const clearCart = () => dispatch({ type: 'CLEAR' });
+  const clearCart = () => dispatch({ type: "CLEAR" });
 
   const toggleWishlist = (productId) => {
     setWishlist((prev) =>
@@ -121,6 +128,6 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
 }
