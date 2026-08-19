@@ -141,7 +141,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-600 font-display text-lg font-bold text-white">
+            <span className="grid h-12 w-12 place-items-center rounded-full bg-brand-600 font-display text-4xl font-bold text-white">
               C
             </span>
             <span className="font-display text-2xl font-bold tracking-tight text-ink-900">
