@@ -4,137 +4,265 @@ export default function Terms() {
   return (
     <PolicyLayout
       title="Terms & Conditions"
-      subtitle="The rules and guidelines for using the chicher website and services."
-      lastUpdated="August 16, 2026"
+      subtitle="The rules and guidelines for using the Chicher website and services."
+      lastUpdated="August 19, 2026"
     >
       <p>
-        Welcome to chicher. By accessing or using our website, you agree to be
-        bound by these Terms & Conditions. Please read them carefully before
-        placing an order.
+        Welcome to <strong>Chicher</strong>. By accessing or using our website,
+        you agree to be bound by these Terms & Conditions. Please read them
+        carefully before placing an order.
       </p>
 
       <h2>1. Acceptance of Terms</h2>
       <p>
-        By browsing, registering, or placing an order on chicher.example, you
-        confirm that you are at least 18 years of age and accept these Terms in
-        full. If you do not agree, please do not use our website.
+        By browsing, using, or placing an order on{" "}
+        <strong>chicher.shop</strong>, you confirm that you are at least 18
+        years of age and agree to these Terms & Conditions. If you do not agree
+        with these Terms, please do not use our website.
       </p>
 
       <h2>2. Products & Pricing</h2>
       <ul>
         <li>
           All products are subject to availability. We reserve the right to
-          limit quantities.
+          limit quantities or discontinue products at any time.
         </li>
         <li>
-          Prices are listed in Indian Rupees (₹) and are inclusive of all
-          applicable taxes.
+          Prices are displayed in Indian Rupees (₹) and applicable taxes will
+          be shown where required.
         </li>
         <li>
-          We make every effort to display product colours and details
-          accurately, but actual products may vary slightly due to screen
-          settings and lighting.
+          We make reasonable efforts to display product colours, images,
+          specifications, and details accurately. However, actual colours may
+          vary slightly depending on your device, screen settings, lighting,
+          and photography conditions.
         </li>
         <li>
-          We reserve the right to change prices and offers without prior notice.
-          Placed orders are charged at the price confirmed at checkout.
+          We reserve the right to change product prices, descriptions, and
+          promotional offers without prior notice.
         </li>
         <li>
-          Discounts, if any, are applied at checkout and cannot be combined
-          unless stated.
+          The price applicable to an order will be the price confirmed when the
+          order is accepted.
+        </li>
+        <li>
+          Discounts and promotional offers may have additional terms and cannot
+          be combined unless specifically stated.
         </li>
       </ul>
 
       <h2>3. Cash on Delivery (COD)</h2>
       <p>
-        chicher operates exclusively on a Cash on Delivery (COD) model. No
-        online payment is required or accepted at checkout. Payment must be made
-        in cash to the delivery agent when your order arrives. Please ensure
-        exact change is available where possible.
+        Chicher currently operates primarily on a Cash on Delivery (COD) model.
+        Where COD is available, payment must be made to the delivery agent when
+        the order is delivered.
       </p>
 
-      <h2>4. Order Confirmation</h2>
+      <p>
+        Customers are responsible for accepting the order and making the
+        required payment at the time of delivery.
+      </p>
+
+      <h2>4. Order Placement & Confirmation</h2>
       <ul>
-        <li>Every order is confirmed via SMS or phone call before dispatch.</li>
         <li>
-          If we are unable to reach you within 48 hours, the order may be
-          cancelled.
+          Placing an order constitutes a request to purchase the selected
+          products.
         </li>
         <li>
-          We reserve the right to refuse or cancel any order at our discretion,
-          including suspected fraudulent activity.
+          Orders may be confirmed through phone call, SMS, email, or other
+          available communication methods.
+        </li>
+        <li>
+          If we are unable to verify or contact you regarding an order, we may
+          cancel the order before dispatch.
+        </li>
+        <li>
+          We reserve the right to refuse, cancel, or limit an order where
+          reasonably necessary, including suspected fraudulent or unauthorized
+          activity.
+        </li>
+        <li>
+          If an order is cancelled before dispatch, the customer will not be
+          required to make payment for that cancelled order.
         </li>
       </ul>
 
       <h2>5. Shipping & Delivery</h2>
       <p>
-        Orders are typically dispatched within 1–2 business days. Delivery
-        timelines vary by location (3–7 business days). For full details, please
-        see our Shipping & Delivery Policy.
+        Orders are generally processed and dispatched within 1–2 business days,
+        subject to product availability and order verification.
       </p>
 
-      <h2>6. Returns & Exchanges</h2>
       <p>
-        We offer a 7-day return window from the date of delivery for eligible
-        items. Certain categories (such as jewellery and innerwear) may be
-        non-returnable for hygiene reasons. See our Returns, Refunds & Exchange
-        Policy for full details.
+        Estimated delivery timelines may vary depending on the delivery
+        location, courier availability, weather, holidays, and other factors.
+        Typical delivery may take approximately 3–7 business days after
+        dispatch.
+      </p>
+
+      <p>
+        For complete information about delivery, please refer to our Shipping &
+        Delivery Policy.
+      </p>
+
+      <h2>6. Returns, Refunds & Exchanges</h2>
+      <p>
+        We offer returns or exchanges for eligible products subject to the
+        conditions described in our Returns, Refunds & Exchange Policy.
+      </p>
+
+      <p>
+        Eligible products may generally be returned within the specified return
+        period from the date of delivery. Certain products, including products
+        that may present hygiene concerns such as jewellery or innerwear, may
+        be excluded from returns or exchanges where applicable.
+      </p>
+
+      <p>
+        Customers should review our Returns, Refunds & Exchange Policy before
+        placing an order.
       </p>
 
       <h2>7. User Conduct</h2>
+
       <p>You agree not to:</p>
+
       <ul>
-        <li>Use the website for any unlawful purpose.</li>
-        <li>Provide false or misleading information when placing an order.</li>
+        <li>Use the website for any unlawful or unauthorized purpose.</li>
         <li>
-          Attempt to disrupt, damage, or gain unauthorised access to our
-          systems.
+          Provide false, inaccurate, or misleading information when placing an
+          order or contacting us.
         </li>
         <li>
-          Reproduce, copy, or resell our content without written permission.
+          Attempt to disrupt, damage, interfere with, or gain unauthorized
+          access to our website, servers, databases, or systems.
+        </li>
+        <li>
+          Upload, transmit, or distribute malicious software, viruses, or
+          harmful code.
+        </li>
+        <li>
+          Reproduce, copy, modify, distribute, or commercially exploit our
+          website content without appropriate authorization.
         </li>
       </ul>
 
       <h2>8. Intellectual Property</h2>
+
       <p>
-        All content on this website — including text, images, logos, and product
-        designs — is the property of chicher or its licensors and is protected
-        by intellectual property laws.
+        Unless otherwise stated, the content available on this website,
+        including text, graphics, logos, photographs, product descriptions,
+        designs, layout, and other materials, is owned by Chicher or its
+        respective licensors and may be protected by applicable intellectual
+        property laws.
       </p>
 
-      <h2>9. Limitation of Liability</h2>
       <p>
-        chicher shall not be liable for any indirect, incidental, or
-        consequential damages arising from the use of our website or products.
-        Our total liability for any claim shall not exceed the amount you paid
-        for the relevant order.
+        You may not reproduce, distribute, modify, publish, or commercially use
+        our protected content without prior written permission, except where
+        permitted by applicable law.
       </p>
 
-      <h2>10. Disclaimer</h2>
+      <h2>9. Website Availability</h2>
+
       <p>
-        Product descriptions, images, and other content are provided for general
-        information only. We do not warrant that product descriptions or other
-        content is error-free, complete, or current.
+        We aim to keep our website available and functioning properly. However,
+        we do not guarantee that the website will always be available,
+        uninterrupted, secure, or free from errors.
       </p>
 
-      <h2>11. Governing Law</h2>
       <p>
-        These Terms are governed by the laws of India. Any disputes shall be
-        subject to the exclusive jurisdiction of the courts in Jaipur,
-        Rajasthan.
+        We may temporarily suspend, modify, update, or discontinue portions of
+        the website for maintenance, security, technical, or operational
+        reasons.
       </p>
 
-      <h2>12. Changes to Terms</h2>
+      <h2>10. Limitation of Liability</h2>
+
       <p>
-        We may revise these Terms at any time. Continued use of the website
-        after changes are posted constitutes acceptance of the updated Terms.
+        To the extent permitted by applicable law, Chicher will not be liable
+        for indirect, incidental, special, consequential, or unforeseeable
+        losses arising from the use of our website or products.
       </p>
 
-      <h2>13. Contact</h2>
       <p>
-        Questions about these Terms? Email{" "}
-        <strong>care@ chicher.example</strong> or call
-        <strong> +91 80012 34567</strong>.
+        Nothing in these Terms is intended to exclude or limit any liability
+        that cannot legally be excluded or limited under applicable law.
+      </p>
+
+      <h2>11. Product Information Disclaimer</h2>
+
+      <p>
+        We make reasonable efforts to ensure that product descriptions, images,
+        prices, sizes, colours, and other information displayed on our website
+        are accurate and up to date.
+      </p>
+
+      <p>
+        However, minor differences may occur due to photography, lighting,
+        screen settings, product batches, or other circumstances. We reserve
+        the right to correct errors and update product information when
+        necessary.
+      </p>
+
+      <h2>12. Privacy</h2>
+
+      <p>
+        Your use of our website is also subject to our{" "}
+        <strong>Privacy Policy</strong>, which explains how we collect, use,
+        store, and protect personal information.
+      </p>
+
+      <h2>13. Governing Law & Jurisdiction</h2>
+
+      <p>
+        These Terms & Conditions are governed by the applicable laws of India.
+        Subject to applicable law, disputes relating to these Terms or your use
+        of the website will be subject to the jurisdiction of the competent
+        courts in <strong>Surat, Gujarat, India</strong>.
+      </p>
+
+      <h2>14. Changes to These Terms</h2>
+
+      <p>
+        We may update or revise these Terms & Conditions from time to time to
+        reflect changes to our website, services, business practices, or legal
+        requirements.
+      </p>
+
+      <p>
+        When changes are made, the updated version will be posted on this page
+        with a revised "Last updated" date. Your continued use of the website
+        after the updated Terms are posted may constitute acceptance of the
+        revised Terms, to the extent permitted by applicable law.
+      </p>
+
+      <h2>15. Contact Us</h2>
+
+      <p>
+        If you have questions about these Terms & Conditions, please contact
+        us:
+      </p>
+
+      <p>
+        <strong>Email:</strong>{" "}
+        <a href="mailto:motarola110@gmail.com">
+          motarola110@gmail.com
+        </a>
+      </p>
+
+      <p>
+        <strong>Location:</strong> Godadara, Surat, Gujarat, India
+      </p>
+
+      <p>
+        <strong>Website:</strong> Chicher
+      </p>
+
+      <p>
+        We will make reasonable efforts to respond to your enquiries within a
+        reasonable period.
       </p>
     </PolicyLayout>
   );

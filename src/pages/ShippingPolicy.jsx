@@ -4,115 +4,251 @@ export default function ShippingPolicy() {
   return (
     <PolicyLayout
       title="Shipping & Delivery Policy"
-      subtitle="How we dispatch, deliver, and track your orders across India."
-      lastUpdated="August 16, 2026"
+      subtitle="How we process, dispatch, deliver, and track your orders across India."
+      lastUpdated="August 19, 2026"
     >
-      <h2>1. Order Processing</h2>
       <p>
-        Orders are processed within 1–2 business days of confirmation. Every
-        order is verified via SMS or phone call before dispatch. If we cannot
-        reach you within 48 hours, the order may be cancelled.
+        At <strong>Chicher</strong>, we aim to process and deliver your orders
+        safely and within the estimated timelines provided below. This policy
+        explains our order processing, shipping charges, delivery timelines,
+        tracking, and delivery procedures.
+      </p>
+
+      <h2>1. Order Processing</h2>
+
+      <p>
+        Orders are generally processed within <strong>1–2 business days</strong>{" "}
+        after order confirmation and verification.
+      </p>
+
+      <p>
+        For Cash on Delivery (COD) orders, we may verify the order through
+        phone call, SMS, or other available communication methods before
+        dispatch.
+      </p>
+
+      <p>
+        If we are unable to contact you or verify your order within a
+        reasonable period, the order may be cancelled before dispatch.
       </p>
 
       <h2>2. Dispatch Timelines</h2>
+
       <ul>
         <li>
-          <strong>Same-day dispatch:</strong> Orders confirmed before 2 PM IST
-          on business days.
+          <strong>Regular orders:</strong> Generally dispatched within 1–2
+          business days after confirmation.
         </li>
         <li>
-          <strong>Next-day dispatch:</strong> Orders confirmed after 2 PM or on
-          weekends/holidays.
+          <strong>Orders placed on weekends or public holidays:</strong>{" "}
+          Processing may begin on the next business day.
         </li>
         <li>
-          <strong>Customised pieces:</strong> May take 3–5 additional business
-          days due to handcrafting.
+          <strong>Special or customized products:</strong> Additional
+          processing time may apply where specifically mentioned on the
+          product page.
         </li>
       </ul>
 
+      <p>
+        Dispatch timelines are estimates and may occasionally be affected by
+        product availability, order verification, holidays, technical issues,
+        or other circumstances beyond our reasonable control.
+      </p>
+
       <h2>3. Delivery Timelines</h2>
-      <p>Estimated delivery times after dispatch:</p>
+
+      <p>
+        Estimated delivery times after dispatch may vary depending on your
+        location and courier service availability:
+      </p>
+
       <ul>
         <li>
-          <strong>Metro cities:</strong> 2–4 business days.
+          <strong>Metro cities:</strong> Approximately 2–4 business days.
         </li>
         <li>
-          <strong>Tier-2 cities:</strong> 4–6 business days.
+          <strong>Tier-2 cities:</strong> Approximately 4–6 business days.
         </li>
         <li>
-          <strong>Rural/remote areas:</strong> 6–8 business days.
+          <strong>Rural and remote areas:</strong> Approximately 6–8 business
+          days.
         </li>
       </ul>
+
       <p>
-        These are estimates and may vary due to weather, festivals, or courier
-        constraints.
+        These are estimated delivery timelines and are not guaranteed delivery
+        dates. Delays may occur because of weather conditions, festivals,
+        public holidays, courier capacity, transportation issues, remote
+        locations, or other circumstances.
       </p>
 
       <h2>4. Shipping Charges</h2>
+
       <ul>
         <li>
-          <strong>Free shipping</strong> on all orders above ₹1,499.
+          <strong>Free shipping</strong> may be available on orders above
+          ₹1,499, where applicable.
         </li>
         <li>
-          A flat shipping fee of <strong>₹79</strong> applies to orders below
+          A shipping charge of <strong>₹79</strong> may apply to orders below
           ₹1,499.
         </li>
         <li>
-          Shipping charges, if any, are clearly shown at checkout before you
-          place your order.
+          Any applicable shipping charges will be clearly displayed at
+          checkout before you place your order.
         </li>
       </ul>
 
       <h2>5. Delivery Partners</h2>
+
       <p>
-        We partner with trusted courier services including Delhivery, BlueDart,
-        and India Post, selected based on your location to ensure the most
-        reliable delivery. You will receive a tracking link via SMS once your
-        order is dispatched.
+        We may work with third-party courier and logistics providers to deliver
+        your orders. The delivery partner may vary depending on your location,
+        service availability, package requirements, and operational
+        considerations.
+      </p>
+
+      <p>
+        Where tracking is available, tracking information may be provided after
+        your order has been dispatched.
       </p>
 
       <h2>6. Order Tracking</h2>
+
       <p>
-        Once dispatched, you'll receive an SMS with a tracking number and link.
-        You can track your package in real time on the courier's website. For
-        tracking assistance, contact us at
-        <strong> care@ chicher.example</strong>.
+        Once your order is dispatched, we may provide a tracking number or
+        tracking link through SMS, email, or another available communication
+        method.
+      </p>
+
+      <p>
+        You can use the tracking information provided to check the current
+        status of your shipment through the relevant courier service.
+      </p>
+
+      <p>
+        If you need assistance with your shipment, please contact us at{" "}
+        <a href="mailto:motarola110@gmail.com">
+          <strong>motarola110@gmail.com</strong>
+        </a>
+        .
       </p>
 
       <h2>7. Delivery Attempts</h2>
+
       <ul>
         <li>
-          Our courier partners attempt delivery up to <strong>3 times</strong>{" "}
-          on consecutive business days.
+          Courier partners may make multiple delivery attempts depending on
+          their operational policies.
         </li>
         <li>
-          Please ensure someone is available at the delivery address to receive
-          the package and make the COD payment.
+          Please ensure that the delivery address and contact number provided
+          with your order are accurate.
         </li>
         <li>
-          If all attempts fail, the order is returned to us and a refund (if
-          applicable) is initiated per our Returns Policy.
+          For Cash on Delivery orders, someone should be available to receive
+          the package and make the required payment.
+        </li>
+        <li>
+          If delivery attempts are unsuccessful, the package may be returned
+          to us according to the courier's return-to-origin process.
         </li>
       </ul>
 
-      <h2>8. Serviceable Areas</h2>
+      <h2>8. Incorrect or Incomplete Address</h2>
+
       <p>
-        We deliver to most pin codes across India. If your pincode is not
-        serviceable, our website will notify you at checkout. COD availability
-        may vary in certain remote areas.
+        Customers are responsible for providing a complete and accurate
+        delivery address, including the recipient's name, phone number, house
+        or building details, area, city, state, and pincode.
       </p>
 
-      <h2>9. International Shipping</h2>
       <p>
-        At present, we ship only within India. We are working on expanding to
-        international destinations — stay tuned.
+        Chicher may not be responsible for delays or failed deliveries caused
+        by incorrect, incomplete, or outdated address or contact information
+        provided by the customer.
       </p>
 
-      <h2>10. Contact</h2>
+      <h2>9. Damaged or Tampered Packages</h2>
+
       <p>
-        For any shipping-related queries, email{" "}
-        <strong>care@ chicher.example</strong> or call
-        <strong> +91 80012 34567</strong> (Mon–Sat, 10 AM–7 PM IST).
+        If your package appears visibly damaged, opened, or tampered with at
+        the time of delivery, please notify the delivery agent and contact us
+        as soon as possible.
+      </p>
+
+      <p>
+        Where possible, customers are encouraged to take photographs or videos
+        of the package and its condition to help us investigate the issue.
+      </p>
+
+      <h2>10. Serviceable Areas</h2>
+
+      <p>
+        We currently aim to deliver to serviceable pin codes across India.
+        Delivery availability may depend on courier coverage and operational
+        conditions.
+      </p>
+
+      <p>
+        Cash on Delivery availability may vary by location and may not be
+        available for certain pin codes or products.
+      </p>
+
+      <h2>11. International Shipping</h2>
+
+      <p>
+        At present, Chicher ships orders only within India. International
+        shipping is not currently available.
+      </p>
+
+      <h2>12. Delivery Delays</h2>
+
+      <p>
+        Although we work to deliver orders within the estimated timelines,
+        delays can sometimes occur because of circumstances outside our
+        reasonable control, including:
+      </p>
+
+      <ul>
+        <li>Severe weather conditions</li>
+        <li>Natural events</li>
+        <li>Public holidays and festivals</li>
+        <li>Courier or transportation disruptions</li>
+        <li>Remote or difficult-to-reach locations</li>
+        <li>Unexpected operational or technical issues</li>
+      </ul>
+
+      <p>
+        We will make reasonable efforts to assist customers when a delivery is
+        delayed.
+      </p>
+
+      <h2>13. Contact Us</h2>
+
+      <p>
+        For shipping or delivery-related questions, please contact us:
+      </p>
+
+      <p>
+        <strong>Email:</strong>{" "}
+        <a href="mailto:motarola110@gmail.com">
+          motarola110@gmail.com
+        </a>
+      </p>
+
+      <p>
+        <strong>Location:</strong> Godadara, Surat, Gujarat, India
+      </p>
+
+      <p>
+        <strong>Website:</strong> Chicher
+      </p>
+
+      <p>
+        We will make reasonable efforts to respond to shipping-related
+        enquiries within a reasonable period.
       </p>
     </PolicyLayout>
   );
