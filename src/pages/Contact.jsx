@@ -45,22 +45,22 @@ export default function Contact() {
               <InfoCard
                 icon={Mail}
                 title="Email"
-                lines={["care@chicher.example", "Replies within 24 hours"]}
+                lines={["motarola110@gmail.com", "Replies within 24 hours"]}
               />
               <InfoCard
                 icon={Phone}
                 title="Phone"
-                lines={["+91 80012 34567", "Mon–Sat, 10am–7pm IST"]}
+                lines={["+8128679580", "Mon–Sat, 10am–7pm IST"]}
               />
               <InfoCard
                 icon={MapPin}
                 title="Address"
-                lines={["14 Heritage Lane", "Jaipur, Rajasthan 302001"]}
+                lines={["Khodiyar Nagar is an neighbourhood in Godadara Gam, Godadara, Surat, Surat District, Gujarat, India."]}
               />
               <InfoCard
                 icon={Clock}
                 title="Business Hours"
-                lines={["Mon–Sat: 10am–7pm", "Sun: Closed"]}
+                lines={["Mon–Sun: 10am–7pm"]}
               />
             </div>
 
