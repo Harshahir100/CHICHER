@@ -50,12 +50,14 @@ export default function Contact() {
               <InfoCard
                 icon={Phone}
                 title="Phone"
-                lines={["+8128679580", "Mon–Sat, 10am–7pm IST"]}
+                lines={["+81286795660", "Mon–Sat, 10am–7pm IST"]}
               />
               <InfoCard
                 icon={MapPin}
                 title="Address"
-                lines={["Khodiyar Nagar is an neighbourhood in Godadara Gam, Godadara, Surat, Surat District, Gujarat, India."]}
+                lines={[
+                  "Khodiyar Nagar is an neighbourhood in Godadara Gam, Godadara, Surat, Surat District, Gujarat, India.",
+                ]}
               />
               <InfoCard
                 icon={Clock}

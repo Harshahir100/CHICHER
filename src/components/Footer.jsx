@@ -143,12 +143,15 @@ export default function Footer() {
           <ul className="mt-4 space-y-3 text-sm text-ink-300">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-              <span>Khodiyar Nagar is an neighbourhood in Godadara Gam, Godadara, Surat, Surat District, Gujarat, India.</span>
+              <span>
+                Khodiyar Nagar is an neighbourhood in Godadara Gam, Godadara,
+                Surat, Surat District, Gujarat, India.
+              </span>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-brand-400" />
-              <a href="tel:+8128679580" className="hover:text-brand-400">
-                +91 8128679580
+              <a href="tel:+81286795660" className="hover:text-brand-400">
+                +91 81286795660
               </a>
             </li>
             <li className="flex items-center gap-3">
