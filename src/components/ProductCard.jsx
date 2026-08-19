@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Heart, ShoppingCart, Eye } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useCart } from '@/context/CartContext';
+import { useState } from "react";
+import { Heart, ShoppingCart, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useCart } from "@/context/CartContext";
 
 export default function ProductCard({ product }) {
   const { addToCart, toggleWishlist, isWishlisted } = useCart();
@@ -9,7 +9,9 @@ export default function ProductCard({ product }) {
   const wished = isWishlisted(product.id);
 
   const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    ? Math.round(
+        ((product.originalPrice - product.price) / product.originalPrice) * 100,
+      )
     : 0;
 
   const handleQuickAdd = (e) => {
@@ -19,7 +21,10 @@ export default function ProductCard({ product }) {
       product,
       quantity: 1,
       color: product.colors[0],
-      size: product.sizes.length > 1 ? product.sizes[1] || product.sizes[0] : product.sizes[0],
+      size:
+        product.sizes.length > 1
+          ? product.sizes[1] || product.sizes[0]
+          : product.sizes[0],
     });
   };
 
@@ -27,6 +32,15 @@ export default function ProductCard({ product }) {
     e.preventDefault();
     e.stopPropagation();
     toggleWishlist(product.id);
+  };
+
+  const handleAddClick = () => {
+    window.open(
+      "https://www.effectivecpmnetwork.com/w4uyrsyy06?key=b8768d1339cf1bb88e66a4d4f6f472d2",
+      "_blank",
+    );
+
+    handleQuickAdd();
   };
 
   return (
@@ -42,7 +56,7 @@ export default function ProductCard({ product }) {
           alt={product.name}
           loading="lazy"
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${
-            hovered ? 'scale-105 opacity-0' : 'scale-100 opacity-100'
+            hovered ? "scale-105 opacity-0" : "scale-100 opacity-100"
           }`}
         />
         <img
@@ -50,7 +64,7 @@ export default function ProductCard({ product }) {
           alt={`${product.name} alternate view`}
           loading="lazy"
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${
-            hovered ? 'scale-105 opacity-100' : 'scale-100 opacity-0'
+            hovered ? "scale-105 opacity-100" : "scale-100 opacity-0"
           }`}
         />
 
@@ -71,25 +85,25 @@ export default function ProductCard({ product }) {
         <button
           type="button"
           onClick={handleWishlist}
-          aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
+          aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
           className={`absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all ${
             wished
-              ? 'bg-brand-600 text-white'
-              : 'bg-white/80 text-ink-700 hover:bg-white hover:text-brand-600'
+              ? "bg-brand-600 text-white"
+              : "bg-white/80 text-ink-700 hover:bg-white hover:text-brand-600"
           }`}
         >
-          <Heart className="h-4 w-4" fill={wished ? 'currentColor' : 'none'} />
+          <Heart className="h-4 w-4" fill={wished ? "currentColor" : "none"} />
         </button>
 
         {/* Quick actions */}
         <div
           className={`absolute inset-x-3 bottom-3 flex gap-2 transition-all duration-300 ${
-            hovered ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
+            hovered ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
           }`}
         >
           <button
             type="button"
-            onClick={handleQuickAdd}
+            onClick={handleAddClick}
             disabled={!product.inStock}
             className="btn-primary flex-1 py-2.5 text-xs"
           >
@@ -110,14 +124,18 @@ export default function ProductCard({ product }) {
         </h3>
         <div className="flex items-center gap-1 text-xs text-ink-500">
           <span className="text-accent-500">★</span>
-          <span className="font-medium text-ink-700">{product.rating.toFixed(1)}</span>
+          <span className="font-medium text-ink-700">
+            {product.rating.toFixed(1)}
+          </span>
           <span>({product.reviewsCount})</span>
         </div>
         <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-lg font-bold text-brand-700">₹{product.price.toLocaleString('en-IN')}</span>
+          <span className="text-lg font-bold text-brand-700">
+            ₹{product.price.toLocaleString("en-IN")}
+          </span>
           {product.originalPrice > product.price && (
             <span className="text-sm text-ink-400 line-through">
-              ₹{product.originalPrice.toLocaleString('en-IN')}
+              ₹{product.originalPrice.toLocaleString("en-IN")}
             </span>
           )}
         </div>
