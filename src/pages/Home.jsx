@@ -16,11 +16,7 @@ const heroImage =
 const heroImage2 =
   "https://images.pexels.com/photos/35059564/pexels-photo-35059564.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400";
 
-/* =========================================================
-   ADSTERRA NATIVE BANNER
-   Same Adsterra code, but each banner gets its own iframe.
-   This allows 2 Native Banners on the same React page.
-========================================================= */
+
 function NativeBanner() {
   const adHtml = `
     <!DOCTYPE html>

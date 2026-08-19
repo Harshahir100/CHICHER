@@ -114,8 +114,7 @@ export default function Navbar() {
     user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Guest";
 
   const handleNavAdClick = () => {
-    // Social Bar ko trigger karne ke liye user interaction
-    // Adsterra Social Bar script already page par loaded hona chahiye.
+   
     document.dispatchEvent(
       new MouseEvent("click", {
         bubbles: true,
