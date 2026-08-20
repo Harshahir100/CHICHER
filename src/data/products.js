@@ -139,7 +139,7 @@ const ethnicNames = [
 ];
 ethnicNames.forEach((baseName, i) => {
   const id = i + 1;
-  const price = 1499 + (i % 8) * 350;
+  const price = 499 + (i % 8) * 10;
   const originalPrice = price + 600 + (i % 5) * 200;
   const images = [pick(ethnicWearImages, i), pick(ethnicWearImages, i, 3), pick(ethnicWearImages, i, 6)];
   products.push(
